@@ -11,10 +11,10 @@ class QuickUnionFind
 
 	def union(child, parent)
 		if @size[child] < @size[parent] 
-			@array[parent] = @array[child]
+			@array[parent] = root(child)
 			@size[parent] += 1
 		else 
-			@array[child] = @array[parent]
+			@array[child] = root(parent)
 			@size[child] += 1
 		end
 	end
