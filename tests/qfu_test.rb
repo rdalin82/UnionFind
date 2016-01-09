@@ -17,6 +17,7 @@ describe QuickUnionFind do
 
 	it "should find root" do 
 		@quf.union(1, 0)
+
 		result = @quf.root(1)
 		assert_equal 0, result
 		refute_equal 1, result
@@ -24,10 +25,19 @@ describe QuickUnionFind do
 	
 	it "should know if they are connected" do 
 		@quf.union(1, 0)
+		@quf.union(5, 0)
+		@quf.union(1, 6)
+		@quf.union(2, 6)
+		@quf.union(5, 6)
 		assert_equal true, @quf.connected(1, 0)
 		assert_equal true, @quf.connected(0, 1)
-		refute_equal true, @quf.connected(5, 2)
+		assert_equal true, @quf.connected(5, 2)
 	end
+
+	it "should appropriate error" do 
+		->{@quf.root(100)}.must_raise ArgumentError
+	end
+
 
 
 

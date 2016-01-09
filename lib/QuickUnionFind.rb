@@ -10,25 +10,41 @@ class QuickUnionFind
 	end 
 
 	def union(child, parent)
-		if @size[child] < @size[parent] 
-			@array[parent] = root(child)
-			@size[parent] += 1
+		validate(child)
+		validate(parent)
+		p = root(parent)
+		c = root(child)
+		if connected(child, parent)
+				
+		elsif @size[c] < @size[p] 
+			@array[p] = c
+			@size[p] =@size[p]+ 1
 		else 
-			@array[child] = root(parent)
-			@size[child] += 1
+			@array[c] = root(p)
+			@size[c] = @size[c]+ 1
 		end
 	end
 
 	def root(child)
-		while @array[child] != child
+		validate(child)
+		while child != @array[child]
 			child = @array[child]
 		end
 		child
 	end
 
 	def connected(child, parent)
+		validate(child)
+		validate(parent)
 		root(child) == root(parent)
 	end
+
+	def validate(number)
+		unless number < @array.length 
+			raise ArgumentError 
+		end
+	end
+
 
 
 end
