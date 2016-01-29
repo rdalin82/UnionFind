@@ -16,12 +16,12 @@ class QuickUnionFind
 		c = root(child)
 		if connected(child, parent)
 				
-		elsif @size[c] < @size[p] 
+		elsif @size[c] <= @size[p] 
 			@array[p] = c
-			@size[p] =@size[p]+ 1
+			@size[p] +=@size[c]
 		else 
-			@array[c] = root(p)
-			@size[c] = @size[c]+ 1
+			@array[c] = p
+			@size[c] += @size[p]
 		end
 	end
 
